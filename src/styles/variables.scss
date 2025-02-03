@@ -19,10 +19,6 @@ $text-color: if($theme == dark, $secondary-color, $title-color);
   color: $text-color;
 }
 
-body {
-  margin: 0;
-  @extend %background-style;
-}
 
 .background {
   @extend %background-style;
@@ -30,4 +26,12 @@ body {
 
 .text-color {
   @extend %text-color-style;
+}
+
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
+
+body {
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  margin: 0;
+  @extend %background-style;
 }
