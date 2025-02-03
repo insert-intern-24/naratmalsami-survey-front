@@ -7,7 +7,8 @@
   let text_number = 0;
   
   const texts = [
-    '안녕하세요 반가워요!',
+    '클릭으로 넘어가요!\n',
+    '안녕하세요 반가워요!\n',
     '저희는 납득 가능한\n외래어 순화AI를 제작하고 있어요',
     'AI를 학습시키기 위해서는\n많은 데이터가 필요해요',
     '여러분의 도움이 필요해요!',
@@ -26,15 +27,15 @@
   function translateText(text) {
     return text
       .replace(/\n/g, "<br/>")
-      .replace(/국립국어원/g, '<img alt="국립국어원" src="src/assets/국립국어원.png" style="margin-right: 10px; margin-bottom: -13px"/>');
+      .replace(/국립국어원/g, '<img alt="국립국어원" src="src/assets/국립국어원.png" style="margin-right: 10px; margin-bottom: -13px"/>')
   };
 
 </script>
 
-<main on:click={changeText}>
+<main on:click={changeText} class="dark-background">
   {#key text_number}
     <div
-      class="text-color"
+      class="dark-text"
       in:fly={{
         y: 100,
         delay: 200,
@@ -61,7 +62,6 @@
     background-image: url('../assets/background.png');
     background-attachment: fixed;
     overflow: hidden;
-
     display: flex;
     justify-content: center;
     align-items: center;
