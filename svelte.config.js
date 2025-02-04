@@ -7,9 +7,7 @@ export default {
   preprocess: [
     vitePreprocess(),
     sveltePreprocess({
-      scss: {
-        prependData: `@import 'src/styles/variables.scss';`
-      }
+      css: { preprocessorOptions: { scss: { api: 'modern' } } }
     })
   ],
 }

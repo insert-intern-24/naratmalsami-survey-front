@@ -1,7 +1,7 @@
 <script>
   import { fly } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
-  
+  import { push } from 'svelte-spa-router';
   import '../styles/variables.scss';
 
   let text_number = 0;
@@ -20,7 +20,7 @@
       text_number = (text_number + 1) % texts.length;
     }
     else {
-      window.location.href = '/survey';
+      push('/survey');
     }
   };
 
