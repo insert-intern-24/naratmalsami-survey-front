@@ -12,3 +12,10 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin text($theme) {
+  color: if($theme == "dark", var.$secondary-color, var.$title-color);
+  font-size: 6rem;
+  color: #fff;
+  font-weight: bold;
+}

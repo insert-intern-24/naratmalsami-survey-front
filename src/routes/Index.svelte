@@ -55,19 +55,17 @@
 </main>
 
 <style lang="scss">
-  @import '../styles/background.scss';
+  @use '../styles/mixins.scss' as mixins;
   main {
-    @include background("dark");
+    @include mixins.background("dark");
     position: relative; 
 
     div {
+      @include mixins.text("dark");
       user-select: none;
-      cursor: pointer;
-      font-size: 6rem;
-      color: #fff;
       text-align: left;
       position: absolute;
-      font-weight: bold;
+      cursor: pointer;
     }
   }
 
