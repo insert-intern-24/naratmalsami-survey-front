@@ -1,16 +1,30 @@
+<script>
+	$: originWord = "템퍼링";
+	$: refinedWord = "사전 접촉 금지 위반";
+
+	// 단어 끝말에 종성이 있는지 확인하는 함수
+	function isJongseong(char) {
+		char = char.slice(-1)
+    const unicodeVal = char.charCodeAt(0) - '가'.charCodeAt(0);
+    const jongseongIndex = unicodeVal % 28;
+		return jongseongIndex !== 0 ? 1 : 0;
+	}
+</script>
+
 <main>
   <div>
     <header>5개의 질문이 남았어요</header>
     <div>
       <h1>
-        <span>템퍼링</span>을<br /><span>사전 접촉 금지 위반</span>으로 다듬었을
+        <span>{originWord}</span>{isJongseong(originWord)? "을" : "를"}<br /><span>사전 접촉 금지 위반</span>{isJongseong(refinedWord) ? "으로" : "로"} 다듬었을
         때<br />자연스럽다 생각하십니까?
       </h1>
       <h2>탬퍼링은 무단으로 변경하거나 조작하는 행위를 의미합니다</h2>
       <div>
         <ul>
           {#each [1, 2, 3, 4, 5] as num}
-            <li on:click={() => handleClick(num)}>{num}</li>
+            <!-- <li on:click={() => handleClick(num)}>{num}</li> -->
+						<li>{num}</li>
           {/each}
         </ul>
       </div>
