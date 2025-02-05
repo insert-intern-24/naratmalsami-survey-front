@@ -56,10 +56,10 @@
   @use '../styles/_mixins.scss' as mixins;
   main {
     @include mixins.background("dark");
-    position: relative; 
 
     div {
       @include mixins.text("dark");
+      font-size: 6rem;
       user-select: none;
       text-align: left;
       position: absolute;
