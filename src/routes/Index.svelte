@@ -2,7 +2,6 @@
   import { fly } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
   import { push } from 'svelte-spa-router';
-  import '../styles/variables.scss';
 
   let text_number = 0;
   
@@ -35,7 +34,6 @@
 <main on:click={changeText}>
   {#key text_number}
     <div
-      class="dark-text"
       in:fly={{
         y: 100,
         delay: 200,
@@ -55,7 +53,7 @@
 </main>
 
 <style lang="scss">
-  @use '../styles/mixins.scss' as mixins;
+  @use '../styles/_mixins.scss' as mixins;
   main {
     @include mixins.background("dark");
     position: relative; 

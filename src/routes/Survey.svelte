@@ -3,7 +3,7 @@
 </main>
 
 <style lang="scss">
-  @import '../styles/mixins.scss';
+  @import '../styles/_mixins.scss';
   main {
     @include background("light");
   }
