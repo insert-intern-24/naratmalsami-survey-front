@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { blur } from "svelte/transition";
 
   let words = [];
   let loading = true;
@@ -29,10 +30,10 @@
     }
   });
 
-  $: id = 0;
-  $: originWord = words[id]?.original_word ?? "";
-  $: refinedWord = words[id]?.refined_word ?? "";
-  $: meaning = words[id]?.meaning ?? "";
+  $: question_id = 0;
+  $: originWord = words[question_id]?.original_word ?? "";
+  $: refinedWord = words[question_id]?.refined_word ?? "";
+  $: meaning = words[question_id]?.meaning ?? "";
 
   // 단어 끝말에 종성이 있는지 확인하는 함수
   function isJongseong(char) {
@@ -40,6 +41,15 @@
     const unicodeVal = char.charCodeAt(0) - "가".charCodeAt(0);
     const jongseongIndex = unicodeVal % 28;
     return jongseongIndex !== 0 ? 1 : 0;
+  }
+
+  let answer = {};
+  function nextQuestion(answer_rating) {
+    answer[question_id] = {
+      word: words[question_id].id,
+      answer_rating: answer_rating
+    };
+    question_id += 1;
   }
 </script>
 
@@ -54,8 +64,8 @@
       <div class="question-content">
         <h1>
           <span>{originWord}</span>{isJongseong(originWord) ? "을" : "를"}<br />
-          <span>{refinedWord}</span>{isJongseong(refinedWord) ? "으로" : "로"} 다듬었을
-          때<br />
+          <span>{refinedWord}</span>{isJongseong(refinedWord) ? "으로" : "로"}
+          다듬었을 때<br />
           자연스럽다 생각하십니까?
         </h1>
         <h2>{meaning}</h2>
@@ -63,7 +73,9 @@
         <div class="rating-container">
           <ul class="rating-list">
             {#each [1, 2, 3, 4, 5] as num}
-              <li class="rating-item">{num}</li>
+              <li class="rating-item" on:click={() => nextQuestion(num)}>
+                {num}
+              </li>
             {/each}
           </ul>
           <div class="rating-labels">
@@ -127,7 +139,7 @@
       font-weight: 400;
       margin: 0px;
       font-size: px-to-rem(24);
-      max-width: 48.125rem;
+      max-width: 50rem;
       word-wrap: break-word;
       overflow-wrap: break-word;
     }
