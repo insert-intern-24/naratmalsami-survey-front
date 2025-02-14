@@ -9,6 +9,7 @@
   // API 호출 및 데이터 정제 함수
   onMount(async () => {
     try {
+      console.log("test")
       const response = await fetch(`${import.meta.env.VITE_API_URL}/sheet`, {
         method: "POST",
         headers: {
@@ -30,13 +31,13 @@
 
       // 정제된 데이터만 추출
       words = result.data.map((item) => ({
-        id: item.id,
+        word_id: item.word_id,
         original_word: item.original_word,
         refined_word: item.refined_word,
         meaning: item.meaning
       }));
     } catch (err) {
-      error = err.message;
+      error = err;
     } finally {
       loading = false;
     }
@@ -58,9 +59,11 @@
   let answer = {};
   function nextQuestion(answer_rating) {
     answer[question_id] = {
-      word_id: words[question_id].id,
+      word_id: words[question_id].word_id,
       rating: answer_rating
     };
+
+    console.log(answer[question_id].word_id);
 
     if (question_id === words.length - 1) {
       try {
@@ -71,7 +74,7 @@
           },
           body: JSON.stringify({
             who: localStorage.getItem("who"),
-            words: answer
+            words: Object.values(answer).map(({ word_id, rating }) => ({ word_id, rating }))
           })
         });
       } catch (err) {
