@@ -7,13 +7,16 @@
   <div in:fly={{ y: 200, duration: 500 }} out:fly={{ y: -200, duration: 500 }}>
     응답 감사합니다!<br/>
     <button on:click={() => push("/survey")}>
-      <img src="src/assets/more.png" alt="more" />
+      추가 응답하기 ▶︎
     </button>
   </div>
 </main>
 
 <style lang="scss">
   @use "../styles/_mixins.scss" as mixins;
+  @use "../styles/_variables.scss" as var;
+  @import "../styles/functions";
+
   main {
     @include mixins.background("dark");
 
@@ -27,7 +30,12 @@
     }
 
     button {
-      background: none;
+      color: var.$primary-color;
+      font-size: px-to-rem(64);
+      font-weight: bold;
+      padding: px-to-rem(24) px-to-rem(32);
+      background: white;
+      border-radius: 999px;
       border: none;
     }
   }
