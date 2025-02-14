@@ -1,6 +1,11 @@
+<script>
+  import { fly } from 'svelte/transition';
+</script>
+
 <main>
-  <div>
-    끝
+  <div in:fly={{ y: 200, duration: 500 }} out:fly={{ y: -200, duration: 500 }}>
+    응답 감사합니다!<br/>
+    <img src="src/assets/more.png" alt="more" />
   </div>
 </main>
 

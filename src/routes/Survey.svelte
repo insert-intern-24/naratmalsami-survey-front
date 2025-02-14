@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { push } from "svelte-spa-router";
   import { blur } from "svelte/transition";
 
   let words = [];
@@ -79,9 +80,10 @@
         });
       } catch (err) {
         console.error(err);
+      } finally {
+        push("/result");
       }
     }
-
     question_id += 1;
   }
 </script>
