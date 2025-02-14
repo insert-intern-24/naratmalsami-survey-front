@@ -9,12 +9,24 @@
   // API 호출 및 데이터 정제 함수
   onMount(async () => {
     try {
-      const response = await fetch("http://169.212.161.82:8080/sheet");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/sheet`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache"
+        },
+        body: JSON.stringify({
+          who: localStorage.getItem("who") || null,
+        })
+      });
       if (!response.ok) {
         throw new Error("API 호출 실패");
       }
 
       const result = await response.json();
+
+      // who값 로컬스토리지에 저장
+      localStorage.setItem("who", result.who);
 
       // 정제된 데이터만 추출
       words = result.data.map((item) => ({
