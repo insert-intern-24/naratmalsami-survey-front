@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { push } from "svelte-spa-router";
-  import { blur } from "svelte/transition";
+  import { fly } from "svelte/transition";
 
   let words = [];
   let loading = true;
@@ -48,6 +48,7 @@
   $: originWord = words[question_id]?.original_word ?? "";
   $: refinedWord = words[question_id]?.refined_word ?? "";
   $: meaning = words[question_id]?.meaning ?? "";
+  $: onResult = false;
 
   // 단어 끝말에 종성이 있는지 확인하는 함수
   function isJongseong(char) {
@@ -64,9 +65,9 @@
       rating: answer_rating
     };
 
-    console.log(answer[question_id].word_id);
 
     if (question_id === words.length - 1) {
+      onResult = true
       try {
         fetch(`${import.meta.env.VITE_API_URL}/voted`, {
           method: "POST",
@@ -122,11 +123,18 @@
     </div>
   {/if}
 </main>
+{#if onResult}
+  <div class="curtain" in:fly={{ y: 0, x: 0 }}></div>
+{/if}
 
 <style lang="scss">
   @use "../styles/_mixins.scss" as mixins;
   @use "../styles/_variables.scss" as var;
   @import "../styles/functions";
+
+  .curtain {
+    @include mixins.background("dark");
+  }
 
   h1 {
     @include mixins.text("light");
