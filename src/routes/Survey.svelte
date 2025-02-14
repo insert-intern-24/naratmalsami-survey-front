@@ -10,7 +10,6 @@
   // API 호출 및 데이터 정제 함수
   onMount(async () => {
     try {
-      console.log("test")
       const response = await fetch(`${import.meta.env.VITE_API_URL}/sheet`, {
         method: "POST",
         headers: {
@@ -64,7 +63,6 @@
       word_id: words[question_id].word_id,
       rating: answer_rating
     };
-
 
     if (question_id === words.length - 1) {
       onResult = true
