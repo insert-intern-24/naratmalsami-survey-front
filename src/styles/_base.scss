@@ -1,8 +1,19 @@
 // Apple SD Gothic Neo 폰트
 @import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
 
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 6px;
+  }
+}
+
 body {
   font-family: 'Apple SD Gothic Neo', sans-serif;
-  margin: 0px;
+  margin: 0;
   overflow: hidden;
+  font-size: 1rem;
 }

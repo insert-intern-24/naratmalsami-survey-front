@@ -27,7 +27,7 @@
       .replace(/\n/g, "<br/>")
       .replace(
         /국립국어원/g,
-        '<img alt="국립국어원" src="src/assets/국립국어원.png" style="margin-right: 10px; margin-bottom: -13px"/>'
+        '<img alt="국립국어원" src="src/assets/국립국어원.png" style="margin-right: 10px; margin-bottom: -13px; height: 5.9375rem; width: auto;"/>'
       );
   }
 </script>
