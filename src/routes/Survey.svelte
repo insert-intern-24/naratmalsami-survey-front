@@ -93,7 +93,7 @@
     <h1>오류 발생: {error}</h1>
   {:else}
     <div class="question-box">
-      <header class="question-header">5개의 질문이 남았어요</header>
+      <header class="question-header">{words.length - question_id}개의 질문이 남았어요</header>
       <div class="question-content">
         <h1>
           <span>{originWord}</span>{isJongseong(originWord) ? "을" : "를"}<br />
