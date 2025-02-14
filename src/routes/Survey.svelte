@@ -46,9 +46,27 @@
   let answer = {};
   function nextQuestion(answer_rating) {
     answer[question_id] = {
-      word: words[question_id].id,
-      answer_rating: answer_rating
+      word_id: words[question_id].id,
+      rating: answer_rating
     };
+
+    if (question_id === words.length - 1) {
+      try {
+        fetch(`${import.meta.env.VITE_API_URL}/voted`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            who: localStorage.getItem("who"),
+            words: answer
+          })
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
     question_id += 1;
   }
 </script>
