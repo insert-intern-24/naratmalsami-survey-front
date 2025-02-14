@@ -60,7 +60,7 @@
 
     div {
       @include mixins.text("dark");
-      font-size: 6rem;
+      font-size: 5rem;
       user-select: none;
       text-align: left;
       position: absolute;

@@ -211,7 +211,7 @@
         list-style: none;
         background: white;
         border-radius: 100%;
-        border: 2px solid var.$primary-color;
+        border: px-to-rem(2) solid var.$primary-color;
         color: var.$primary-color;
         transition: 0.3s ease-in-out;
         cursor: pointer;
