@@ -12,11 +12,11 @@ jobs:
     steps:
       # 1. 코드 체크아웃
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # 2. Node.js 설정
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
@@ -28,9 +28,24 @@ jobs:
       - name: Build frontend
         run: npm run build
 
-      # 5. Nginx 서버에 빌드된 파일 배포
+      # 5. 빌드된 파일을 서버로 전송하고 Nginx 서버에 배포
       - name: Deploy to Nginx Server
-        run: |
-          scp -P ${{ secrets.SSH_PORT }} -r ./dist ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/naratmalsami-front
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            # Nginx 서버에 배포할 디렉토리 설정
+            TARGET_DIR="/var/www/naratmalsami-front"
+
+            # 디렉토리 생성 및 기존 파일 삭제
+            mkdir -p $TARGET_DIR
+            rm -rf $TARGET_DIR/*
+
+            # 빌드된 파일을 서버로 전송
+            rsync -avz --delete ./dist/ $TARGET_DIR/
+
+            # Nginx 서버 재시작 (필요한 경우)
+            # sudo systemctl restart nginx
