@@ -32,7 +32,7 @@
   }
 </script>
 
-<main on:click={changeText}>
+<main on:click={changeText} aria-hidden="true">
   {#key text_number}
     <div
       in:fly={{

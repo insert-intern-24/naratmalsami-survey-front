@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @function px-to-rem($px) {
-  @return ($px / 12) * (12 / 16) * 1rem * 1.2;
+  @return math.div($px, 12) * math.div(12, 16) * 1rem * 1.2;
 }

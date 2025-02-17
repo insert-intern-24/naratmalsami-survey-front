@@ -15,7 +15,7 @@
 <style lang="scss">
   @use "../styles/_mixins.scss" as mixins;
   @use "../styles/_variables.scss" as var;
-  @import "../styles/functions";
+  @use "../styles/functions" as *;
 
   main {
     @include mixins.background("dark");

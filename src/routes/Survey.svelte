@@ -107,7 +107,7 @@
         <div class="rating-container">
           <ul class="rating-list">
             {#each [1, 2, 3, 4, 5] as num}
-              <li class="rating-item" on:click={() => nextQuestion(num)}>
+              <li class="rating-item" on:click={() => nextQuestion(num)} aria-hidden="true">
                 {num}
               </li>
             {/each}
@@ -128,7 +128,7 @@
 <style lang="scss">
   @use "../styles/_mixins.scss" as mixins;
   @use "../styles/_variables.scss" as var;
-  @import "../styles/functions";
+  @use "../styles/functions" as *;
 
   .curtain {
     @include mixins.background("dark");
