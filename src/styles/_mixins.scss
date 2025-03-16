@@ -5,7 +5,7 @@
   min-width: 100dvw;
   background-size: cover;
   background-attachment: fixed;
-  background-image: url('src/assets/background.png');
+  background-image: url('/background.png');
   background-color: if($theme == "dark", var.$primary-color, var.$secondary-color);
   display: flex;
   justify-content: center;
